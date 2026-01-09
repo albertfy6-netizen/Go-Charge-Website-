@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About GoCharge | Our Mission</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --brand-green: #419447;
+            --deep-green: #1a3a1c;
+            --soft-white: #ffffff;
+            --off-white: #fafafa;
+        }
+
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--soft-white); color: #333; font-family: 'Inter', sans-serif; margin: 0; }
+
+        /* HEADER & CART STYLES */
+        .header-container { display: flex; justify-content: space-between; align-items: center; padding: 20px; max-width: 1200px; margin: 0 auto; }
+        .nav-logo { height: 45px; width: auto; }
+        nav ul { display: flex; list-style: none; gap: 30px; margin: 0; padding: 0; }
+        nav a { text-decoration: none; color: black; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: var(--brand-green); }
+        .cart-drawer { position: fixed; right: -400px; top: 0; width: 350px; height: 100%; background: white; box-shadow: -5px 0 15px rgba(0,0,0,0.1); transition: 0.4s; z-index: 1000; padding: 20px; color: black; }
+        .cart-drawer.open { right: 0; }
+        .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
+        .cart-overlay.open { display: block; }
+
+        /* ABOUT HERO */
+        .cb-hero { padding: 100px 20px; background: radial-gradient(circle at top right, #f0faf1, transparent); text-align: center; }
+        .cb-hero h1 { font-size: clamp(3rem, 8vw, 5rem); font-weight: 900; line-height: 0.85; color: #000; text-transform: uppercase; letter-spacing: -2px; margin-bottom: 20px; }
+        .cb-hero p { font-size: 1.3rem; color: var(--brand-green); font-weight: 500; max-width: 700px; margin: 0 auto; }
+
+        /* INTRO SECTION */
+        .cb-intro { padding: 80px 20px; text-align: left; max-width: 1000px; margin: 0 auto; }
+        .cb-tag { color: var(--brand-green); font-weight: 800; letter-spacing: 2px; display: block; margin-bottom: 15px; text-align: center;}
+        .cb-intro h2 { font-size: 2.5rem; color: #000; margin-bottom: 20px; text-align: center;}
+        .cb-intro p { font-size: 1.1rem; line-height: 1.8; color: #444; margin-bottom: 20px; }
+
+        /* SPLIT SECTIONS */
+        .cb-split { padding: 60px 20px; }
+        .cb-split-grid { display: flex; align-items: center; gap: 50px; max-width: 1200px; margin: 0 auto; }
+        .cb-split-img { flex: 1; height: 450px; background-size: cover; background-position: center; border-radius: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .cb-split-text { flex: 1; padding: 40px; }
+        .cb-split-text h2 { font-size: 2.5rem; color: var(--brand-green); margin-bottom: 20px; text-transform: uppercase; }
+        .cb-split-text p { font-size: 1.1rem; line-height: 1.6; color: #555; }
+
+        /* STATS SECTION */
+        .cb-stats { background: var(--deep-green); color: white; padding: 80px 20px; margin: 80px 0; }
+        .cb-stats-grid { display: flex; justify-content: space-around; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; gap: 40px; }
+        .stat-item { text-align: center; }
+        .stat-num { display: block; font-size: 4rem; font-weight: 900; color: var(--brand-green); margin-bottom: 10px; }
+        .stat-label { font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+
+        .cb-btn-outline { border: 2px solid var(--brand-green); color: var(--brand-green); padding: 15px 35px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 20px; text-transform: uppercase; transition: 0.3s; }
+        .cb-btn-outline:hover { background: var(--brand-green); color: white; }
+
+        /* FOOTER */
+        .main-footer { background: var(--deep-green); padding: 80px 20px; color: white; }
+        .footer-container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; max-width: 1200px; margin: 0 auto; }
+        .footer-col { flex: 1; min-width: 250px; }
+        .footer-logo { width: 220px; margin-bottom: 25px; }
+        .footer-col h4 { color: var(--brand-green); margin-bottom: 20px; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col a { color: white; text-decoration: none; opacity: 0.8; transition: 0.3s; }
+        .footer-col a:hover { opacity: 1; color: var(--brand-green); }
+
+        @media (max-width: 900px) {
+            .cb-split-grid { flex-direction: column !important; }
+            .cb-split-img { width: 100%; height: 300px; }
+            .footer-container { flex-direction: column; text-align: center; }
+            .footer-col { display: flex; flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <svg style="width:0;height:0;position:absolute;" aria-hidden="true">
+        <linearGradient id="instagram-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#FFD600" />
+            <stop offset="50%" style="stop-color:#FF0069" />
+            <stop offset="100%" style="stop-color:#7638FF" />
+        </linearGradient>
+    </svg>
+
+    <div id="cart-drawer" class="cart-drawer">
+        <div class="cart-header" style="display:flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+            <h2 style="margin:0;">Your Cart</h2>
+            <button onclick="toggleCart()" style="background:none; border:none; font-size: 2rem; cursor:pointer;">×</button>
+        </div>
+        <div id="cart-items" style="margin-top:20px;">
+            <p class="empty-msg">Your cart is empty.</p>
+        </div>
+        <div class="cart-footer" style="position:absolute; bottom:20px; left:20px; width: calc(100% - 40px); border-top: 1px solid #eee; padding-top: 20px;">
+            <div style="display:flex; justify-content: space-between; font-weight: bold; margin-bottom: 20px;">
+                <span>Total:</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <button style="width:100%; background: var(--brand-green); color:white; border:none; padding: 15px; border-radius: 8px; font-weight:bold; cursor:pointer;">Checkout</button>
+        </div>
+    </div>
+    <div id="cart-overlay" class="cart-overlay" onclick="toggleCart()"></div>
+
+    <header>
+        <div class="header-container">
+            <a href="index.html">
+                <img src="https://media.discordapp.net/attachments/1416754084576497727/1458633338440122419/Screenshot_2026-01-07_at_8.27.39_PM.png?ex=69610267&is=695fb0e7&hm=189f289edd9ad261a3e8dba676fc651162aaf2e75357c860d89c24521f6675ba&=&format=webp&quality=lossless&width=1100&height=312" alt="GoCharge Logo" class="nav-logo">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html" style="color: var(--brand-green); font-weight: bold;">About Us</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="javascript:void(0)" onclick="toggleCart()" style="color: var(--brand-green); font-weight: bold;">🛒 Cart</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="cb-hero">
+            <h1>Learn About<br> Our History</h1>
+        </section>
+
+        <section class="cb-intro">
+            <span class="cb-tag">OUR STORY</span>
+            <h2>Keeping you connected, wherever you go.</h2>
+            <p><strong>Albert Ma</strong>, the founder of Go Charge, created a Canadian-based public charging solution designed for people who are constantly on the move. Go Charge was created after Albert noticed how often Canadians rely on their phones for daily tasks such as communication, navigation, and payments—especially when they are away from home. Around 64% of Canadians use their smartphones at least once every hour, showing just how essential mobile devices are throughout the day.</p>
+            
+            <p>Our <strong>Mission Statement</strong> is to keep Canadians connected by offering fast, affordable, and reliable charging wherever it’s needed most. Our product is a public charging station that allows customers to rent or buy portable chargers instantly. Each charger is an 18W fast charger with retractable cables that support USB-C, Lightning, Mini USB, and Micro USB, so users never need to bring their own cable. </p>
+            
+            <p>Customers can rent a charger for $2.35 every 45 minutes or purchase one for $55 for long-term use. Go Charge stations are placed in high-traffic public locations such as shopping malls, airports, train stations, schools, and tourist areas, beginning with the <strong>Toronto Eaton Centre</strong> and <strong>Scarborough Town Centre</strong>. With quick charging that can power phones up to 50% in just 25 minutes, up to 50 chargers per station, and pricing that is more affordable than competitors, Go Charge delivers the most convenient and reliable public charging solution made specifically for Canadians.</p>
+        </section>
+
+        <section class="cb-split">
+            <div class="cb-split-grid">
+                <div class="cb-split-img" style="background-image: url('https://cdn.thewirecutter.com/wp-content/media/2025/12/BEST-USB-C-CABLES-AND-ADAPTERS-2048px-anker-nano.jpg?auto=webp&quality=75&width=1024');"></div>
+                <div class="cb-split-text">
+                    <h2>Sustainable Innovation</h2>
+                    <p>GoCharge promotes responsible consumption and production as a means of meeting the United Nations Sustainable Development Goal 12. GoCharge has opted to offer reusable portable chargers on rent, rather than charging them using high-quality, disposable cables. This method helps in the reduction of electronic waste and minimizes environmental impact. GoCharge has contributed into reducing its carbon footprint by over 10,000 kg this year, thanks to the elimination of low quality charging devices.</p>
+                    
+                    <a href="products.html" class="cb-btn-outline">to see a list of products we sell, click here</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="cb-stats">
+            <div class="cb-stats-grid">
+                <div class="stat-item">
+                    <span class="stat-num">10,000</span>
+                    <span class="stat-label">KG Waste Diverted</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">18W</span>
+                    <span class="stat-label">Rapid Charging</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">100%</span>
+                    <span class="stat-label">Recyclable Components</span>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col" style="flex: 1.5;">
+                <img src="https://media.discordapp.net/attachments/1416754084576497727/1458633338440122419/Screenshot_2026-01-07_at_8.27.39_PM.png?ex=69610267&is=695fb0e7&hm=189f289edd9ad261a3e8dba676fc651162aaf2e75357c860d89c24521f6675ba&=&format=webp&quality=lossless&width=1100&height=312" alt="GoCharge" class="footer-logo">
+                <div style="margin-top: 10px;">
+                    <p>Call Us: (416) 555-1020</p>
+                    <p>Email Us: info.gocharge@gmail.com</p>
+                    <p style="display: flex; align-items: center; gap: 10px; margin-top: 15px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24"><path fill="url(#instagram-gradient)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.981 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        <span>@go.charge.canada</span>
+                    </p>
+                    <p>100 Steelcase Rd E, Markham, ON L3R 1E8</p>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>PRODUCTS</h4>
+                <ul><li><a href="products.html">Power Banks</a></li></ul>
+            </div>
+            <div class="footer-col">
+                <h4>ABOUT US</h4>
+                <ul><li><a href="about.html">Our Story</a></li></ul>
+            </div>
+            <div class="footer-col">
+                <h4>HELP</h4>
+                <ul>
+                    <li><a href="index.html#faq">FAQs</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px; opacity: 0.5; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+            © 2026 GoCharge | Designed by Albert Ma | Last Modified: January 2026
+        </div>
+    </footer>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('goChargeCart')) || [];
+        function toggleCart() {
+            document.getElementById('cart-drawer').classList.toggle('open');
+            document.getElementById('cart-overlay').classList.toggle('open');
+            renderCart();
+        }
+        function saveCart() {
+            localStorage.setItem('goChargeCart', JSON.stringify(cart));
+            renderCart();
+        }
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            saveCart();
+        }
+        function renderCart() {
+            const container = document.getElementById('cart-items');
+            const totalElement = document.getElementById('cart-total-price');
+            if (cart.length === 0) {
+                container.innerHTML = '<p class="empty-msg">Your cart is empty.</p>';
+                totalElement.innerText = '$0.00';
+                return;
+            }
+            let total = 0;
+            container.innerHTML = cart.map((item, index) => {
+                total += item.price;
+                return `
+                    <div class="cart-item-row" style="display:flex; align-items:center; gap:15px; margin-bottom:15px; border-bottom:1px solid #eee; padding-bottom:10px;">
+                        <img src="${item.img}" style="width:50px; height:50px; object-fit:contain; border-radius:4px; background:#f9f9f9;">
+                        <div style="flex-grow:1; text-align:left;">
+                            <p style="margin:0; font-weight:bold; font-size:0.9rem; color:black;">${item.name}</p>
+                            <p style="margin:0; color:#419447; font-weight:bold;">$${item.price.toFixed(2)}</p>
+                        </div>
+                        <button onclick="removeFromCart(${index})" style="background:none; border:none; color:red; cursor:pointer;">✕</button>
+                    </div>`;
+            }).join('');
+            totalElement.innerText = `$${total.toFixed(2)}`;
+        }
+        renderCart();
+    </script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products | GoCharge</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --brand-green: #419447;
+            --deep-green: #1a3a1c;
+            --soft-white: #ffffff;
+            --off-white: #fafafa;
+        }
+
+        body { font-family: 'Inter', sans-serif; margin: 0; background-color: var(--soft-white); }
+
+        /* HEADER */
+        .header-container { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 20px; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+        .nav-logo { height: 45px; width: auto; }
+        nav ul { display: flex; list-style: none; gap: 30px; margin: 0; padding: 0; }
+        nav a { text-decoration: none; color: black; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: var(--brand-green); }
+        nav a.active { color: var(--brand-green); font-weight: bold; }
+
+        /* PRODUCT GRID */
+        .products-page { max-width: 1200px; margin: 60px auto; padding: 0 20px; text-align: center; }
+        .category-header h1 { font-size: 3rem; text-transform: uppercase; margin-bottom: 10px; }
+        .product-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px; 
+            margin-top: 50px; 
+        }
+        .product-card { 
+            background: white; 
+            padding: 20px; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05); 
+            transition: 0.3s; 
+            display: flex; 
+            flex-direction: column;
+            text-align: left;
+        }
+        .product-card:hover { transform: translateY(-10px); }
+        .product-image { 
+            height: 250px; 
+            background: #f9f9f9; 
+            border-radius: 15px; 
+            margin-bottom: 20px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            overflow: hidden; 
+        }
+        .product-image img { max-width: 90%; max-height: 90%; object-fit: contain; }
+        .price { font-size: 1.4rem; font-weight: bold; color: var(--brand-green); margin: 10px 0; }
+        .shop-btn { 
+            background: var(--brand-green); 
+            color: white; 
+            padding: 12px; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            font-weight: bold; 
+            display: block; 
+            text-align: center;
+            margin-top: auto; 
+            border: none;
+            cursor: pointer;
+        }
+        .badge { background:#e8f5e9; color:var(--brand-green); padding:5px 10px; border-radius:5px; font-size:0.8rem; font-weight:bold; display: inline-block; margin-bottom: 10px; }
+
+        /* CART DRAWER */
+        .cart-drawer { position: fixed; right: -400px; top: 0; width: 350px; height: 100%; background: white; box-shadow: -5px 0 15px rgba(0,0,0,0.1); transition: 0.4s; z-index: 1000; padding: 20px; }
+        .cart-drawer.open { right: 0; }
+        .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
+        .cart-overlay.open { display: block; }
+
+        /* FOOTER */
+        .main-footer { background: var(--deep-green); padding: 80px 20px; color: white; margin-top: 100px; }
+        .footer-container { 
+            display: flex; 
+            justify-content: space-between; 
+            flex-wrap: wrap; 
+            gap: 40px; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            text-align: left;
+        }
+        .footer-col { flex: 1; min-width: 250px; }
+        .footer-logo { width: 220px; margin-bottom: 25px; }
+        .footer-col h4 { color: var(--brand-green); margin-bottom: 20px; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
+        .footer-col ul { list-style: none; padding: 0; margin: 0; }
+        .footer-col ul li { margin-bottom: 12px; }
+        .footer-col a { color: white; text-decoration: none; opacity: 0.8; transition: 0.3s; }
+        .footer-col a:hover { opacity: 1; color: var(--brand-green); }
+
+        @media (max-width: 900px) {
+            .footer-container { flex-direction: column; text-align: center; }
+            .footer-col { display: flex; flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+    <svg style="width:0;height:0;position:absolute;" aria-hidden="true">
+        <linearGradient id="instagram-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" style="stop-color:#FFD600" />
+            <stop offset="50%" style="stop-color:#FF0069" />
+            <stop offset="100%" style="stop-color:#7638FF" />
+        </linearGradient>
+    </svg>
+
+    <div id="cart-drawer" class="cart-drawer">
+        <div class="cart-header" style="display:flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 15px;">
+            <h2 style="margin:0;">Your Cart</h2>
+            <button onclick="toggleCart()" style="background:none; border:none; font-size: 2rem; cursor:pointer;">×</button>
+        </div>
+        <div id="cart-items" style="margin-top:20px;">
+            <p class="empty-msg">Your cart is empty.</p>
+        </div>
+        <div class="cart-footer" style="position:absolute; bottom:20px; left:20px; width: calc(100% - 40px); border-top: 1px solid #eee; padding-top: 20px;">
+            <div style="display:flex; justify-content: space-between; font-weight: bold; margin-bottom: 20px;">
+                <span>Total:</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()" style="width:100%; background: var(--brand-green); color:white; border:none; padding: 15px; border-radius: 8px; font-weight:bold; cursor:pointer;">Checkout</button>
+        </div>
+    </div>
+    <div id="cart-overlay" class="cart-overlay" onclick="toggleCart()"></div>
+
+    <header>
+        <div class="header-container">
+            <a href="index.html">
+                <img src="https://media.discordapp.net/attachments/1416754084576497727/1458633338440122419/Screenshot_2026-01-07_at_8.27.39_PM.png?ex=69610267&is=695fb0e7&hm=189f289edd9ad261a3e8dba676fc651162aaf2e75357c860d89c24521f6675ba&=&format=webp&quality=lossless&width=1100&height=312" alt="GoCharge Logo" class="nav-logo">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="products.html" class="active">Products</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="javascript:void(0)" onclick="toggleCart()" style="color: var(--brand-green); font-weight: bold;">🛒 Cart</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="products-page">
+        <div class="category-header">
+            <h1>Power Banks</h1>
+            <p>Portable power for every adventure, from small chargers to high-capacity powered chargers.</p>
+           
+
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image"><img src="https://m.media-amazon.com/images/I/61EfurqNpqL._AC_UF894,1000_QL80_.jpg" alt="Multi Cable 30W Charger"></div>
+                <div class="product-info">
+                    <span class="badge">Bestseller</span>
+                    <h3>Multi Cable 30W Charger</h3>
+                    <p>Compact 6000mAh | 4-in-1 Built-in Cable</p>
+                    <p class="price">$55.00</p>
+                    <button class="shop-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image"><img src="https://cdn.shopify.com/s/files/1/0493/7636/2660/files/A1614021_TD01_V1_2fc1529e-b7cc-442a-84fe-4bd2889635f6_1600x.png" alt="Magnetic Portable Charger"></div>
+                <div class="product-info">
+                    <span class="badge">High Capacity</span>
+                    <h3>Magnetic Portable Charger</h3>
+                    <p>5000mAh | Magnetic Portable</p>
+                    <p class="price">$45.00</p>
+                    <button class="shop-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image"><img src="https://m.media-amazon.com/images/I/71-yEz2b-kL._AC_UF894,1000_QL80_.jpg" alt="Wall Charger"></div>
+                <div class="product-info">
+                    <span class="badge">High Capacity</span>
+                    <h3>Portable Wall Charger</h3>
+                    <p>20000mAh | High Power Portable</p>
+                    <p class="price">$86.99</p>
+                    <button class="shop-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image"><img src="https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQsJ1qNU24DwNXSiyOn2mLqY0N_LbuP-we-ZW7Mxsfq6bNPXAI5DmHKXJqfMKJxf9B7aMj03lSI" alt="Laptop Power Bank"></div>
+                <div class="product-info">
+                    <span class="badge">High Capacity</span>
+                    <h3>Laptop Power Bank</h3>
+                    <p>5000mAh | Laptop Power Bank</p>
+                    <p class="price">$105.99</p>
+                    <button class="shop-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image"><img src="https://i5.walmartimages.com/asr/c13f1a03-871e-4dd9-95fa-0e375d6c11ed.6a11fd1912c0729c99e79d4ea61e5f39.jpeg" alt="Wall Plug Charger"></div>
+                <div class="product-info">
+                    <span class="badge">High Capacity</span>
+                    <h3>AC Wall Plug Charger</h3>
+                    <p>16000mAh | Magnetic Portable</p>
+                    <p class="price">$82.50</p>
+                    <button class="shop-btn">Add to Cart</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image"><img src="https://m.media-amazon.com/images/I/61ksyFVRhyL.jpg" alt="Small Portable Charger"></div>
+                <div class="product-info">
+                    <h3>Small Portable Charger</h3>
+                    <p>One Cable Type | Plug In</p>
+                    <p class="price">$35.00</p>
+                    <button class="shop-btn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="main-footer">
+        <div class="footer-container">
+            <div class="footer-col" style="flex: 1.5;">
+                <img src="https://media.discordapp.net/attachments/1416754084576497727/1458633338440122419/Screenshot_2026-01-07_at_8.27.39_PM.png?ex=69610267&is=695fb0e7&hm=189f289edd9ad261a3e8dba676fc651162aaf2e75357c860d89c24521f6675ba&=&format=webp&quality=lossless&width=1100&height=312" alt="GoCharge" class="footer-logo">
+                <div style="margin-top: 10px;">
+                    <p>Call Us: (416) 555-1020</p>
+                    <p>Email Us: info.gocharge@gmail.com</p>
+                    <p style="display: flex; align-items: center; gap: 10px; margin-top: 15px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24"><path fill="url(#instagram-gradient)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.981 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        <span>@go.charge.canada</span>
+                    </p>
+                    <p>100 Steelcase Rd E, Markham, ON L3R 1E8</p>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Products</h4>
+                <ul><li><a href="products.html">Power Banks</a></li></ul>
+            </div>
+            <div class="footer-col">
+                <h4>About Us</h4>
+                <ul><li><a href="about.html">Our Story</a></li></ul>
+            </div>
+            <div class="footer-col">
+                <h4>Help</h4>
+                <ul>
+                    <li><a href="index.html#faq">FAQs</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 50px; opacity: 0.5; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+            © 2026 GoCharge | Designed by Albert Ma | Last Modified: January 2026
+        </div>
+    </footer>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem('goChargeCart')) || [];
+    
+        function toggleCart() {
+            document.getElementById('cart-drawer').classList.toggle('open');
+            document.getElementById('cart-overlay').classList.toggle('open');
+            renderCart();
+        }
+    
+        document.querySelectorAll('.shop-btn').forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const card = btn.closest('.product-card');
+                
+                const product = {
+                    name: card.querySelector('h3').innerText,
+                    price: parseFloat(card.querySelector('.price').innerText.replace('$', '')),
+                    img: card.querySelector('img').src
+                };
+                
+                cart.push(product);
+                saveCart();
+                toggleCart(); 
+            });
+        });
+    
+        function saveCart() {
+            localStorage.setItem('goChargeCart', JSON.stringify(cart));
+            renderCart();
+        }
+    
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            saveCart();
+        }
+    
+        function checkout() {
+            if(cart.length === 0) return;
+            cart = []; 
+            saveCart(); 
+            toggleCart(); 
+        }
+    
+        function renderCart() {
+            const container = document.getElementById('cart-items');
+            const totalElement = document.getElementById('cart-total-price');
+            
+            if (cart.length === 0) {
+                container.innerHTML = '<p class="empty-msg">Your cart is empty.</p>';
+                totalElement.innerText = '$0.00';
+                return;
+            }
+    
+            let total = 0;
+            container.innerHTML = cart.map((item, index) => {
+                total += item.price;
+                return `
+                    <div class="cart-item-row" style="display:flex; align-items:center; gap:15px; margin-bottom:15px; border-bottom:1px solid #eee; padding-bottom:10px;">
+                        <img src="${item.img}" style="width:50px; height:50px; object-fit:contain; border-radius:4px; background:#f9f9f9;">
+                        <div style="flex-grow:1; text-align:left;">
+                            <p style="margin:0; font-weight:bold; font-size:0.9rem; color: black;">${item.name}</p>
+                            <p style="margin:0; color:#419447; font-weight:bold;">$${item.price.toFixed(2)}</p>
+                        </div>
+                        <button onclick="removeFromCart(${index})" style="background:none; border:none; color:red; cursor:pointer; font-weight:bold;">✕</button>
+                    </div>
+                `;
+            }).join('');
+            
+            totalElement.innerText = `$${total.toFixed(2)}`;
+        }
+    
+        renderCart();
+    </script>
+</body>
+</html>
