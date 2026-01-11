@@ -21,57 +21,65 @@
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
-            padding: 20px; 
+            padding: 15px 20px; 
             max-width: 1200px; 
             margin: 0 auto; 
         }
-        .nav-logo { height: 45px; width: auto; }
+        .nav-logo { height: 40px; width: auto; }
         nav ul { display: flex; list-style: none; gap: 30px; margin: 0; padding: 0; }
         nav a { text-decoration: none; color: black; font-weight: 500; transition: 0.3s; }
         nav a:hover { color: var(--brand-green); }
 
-        /* HERO SECTION */
-        .hero { padding: 100px 20px; text-align: center; background: radial-gradient(circle at top right, #f0faf1, transparent); }
-        .hero-content h1 { font-size: clamp(3.5rem, 10vw, 6rem); font-weight: 900; line-height: 0.85; margin: 0; text-transform: uppercase; letter-spacing: -3px; }
-        .hero-rect-container { position: relative; margin: 50px auto; max-width: 950px; }
-        .hero-rect-image { width: 100%; height: 450px; object-fit: cover; border-radius: 40px; box-shadow: 0 30px 60px rgba(0,0,0,0.15); }
-        .floating-badge { position: absolute; bottom: -20px; right: 40px; background: var(--brand-green); color: white; padding: 20px 40px; border-radius: 20px; font-weight: bold; text-transform: uppercase; }
+        /* HERO SECTION - REDUCED PADDING */
+        .hero { padding: 60px 20px; text-align: center; background: radial-gradient(circle at top right, #f0faf1, transparent); }
+        .hero-content h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); font-weight: 900; line-height: 0.9; margin: 0; text-transform: uppercase; letter-spacing: -2px; }
+        
+        .hero-rect-container { position: relative; margin: 30px auto; max-width: 800px; }
+        
+        /* FIXED: Reduced height to 350px so it doesn't take up the whole screen */
+        .hero-rect-image { 
+            width: 100%; 
+            height: 350px; 
+            object-fit: cover; 
+            border-radius: 30px; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); 
+        }
+        
+        .floating-badge { position: absolute; bottom: -15px; right: 30px; background: var(--brand-green); color: white; padding: 12px 25px; border-radius: 12px; font-weight: bold; text-transform: uppercase; font-size: 0.9rem; }
 
-        /* WHY US SECTION - YOUR WORDING */
-        .why-us { padding: 100px 20px; max-width: 1200px; margin: 0 auto; text-align: center; }
-        .why-us-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-top: 50px; }
-        .why-card { padding: 40px; background: white; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: left; }
-        .why-card h3 { color: var(--brand-green); font-size: 1.5rem; margin-bottom: 15px; text-transform: uppercase; }
-        .why-card p { color: #666; line-height: 1.6; margin: 0; }
+        /* WHY US SECTION */
+        .why-us { padding: 80px 20px; max-width: 1200px; margin: 0 auto; text-align: center; }
+        .why-us-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 40px; }
+        .why-card { padding: 30px; background: white; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); text-align: left; }
+        .why-card h3 { color: var(--brand-green); font-size: 1.3rem; margin-bottom: 12px; text-transform: uppercase; }
+        .why-card p { color: #666; line-height: 1.6; margin: 0; font-size: 0.95rem; }
 
         /* FAQ SECTION */
-        .faq-container { display: flex; max-width: 1200px; margin: 100px auto; gap: 80px; padding: 0 20px; }
-        .faq-visual { flex: 1; height: 500px; background: var(--off-white); border-radius: 50px 50px 0 50px; border: 15px solid var(--off-white); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .faq-container { display: flex; max-width: 1200px; margin: 60px auto; gap: 50px; padding: 0 20px; }
+        .faq-visual { flex: 1; height: 400px; background: var(--off-white); border-radius: 40px 40px 0 40px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
         .faq-image-side { width: 100%; height: 100%; object-fit: contain; }
         .faq-content { flex: 1.2; text-align: left; }
-        .faq-item { margin-bottom: 40px; border-bottom: 1px solid #eee; padding-bottom: 25px; }
+        .faq-item { margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 20px; }
 
-        /* CART DRAWER */
+        /* CART UI */
         .cart-drawer { position: fixed; right: -400px; top: 0; width: 350px; height: 100%; background: white; box-shadow: -5px 0 15px rgba(0,0,0,0.1); transition: 0.4s; z-index: 1000; padding: 20px; color: black; }
         .cart-drawer.open { right: 0; }
         .cart-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; z-index: 999; }
         .cart-overlay.open { display: block; }
 
         /* FOOTER */
-        .main-footer { background: var(--deep-green); padding: 80px 20px; color: white; }
+        .main-footer { background: var(--deep-green); padding: 60px 20px; color: white; }
         .footer-container { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 40px; max-width: 1200px; margin: 0 auto; }
         .footer-col { flex: 1; min-width: 250px; }
-        .footer-logo { width: 220px; margin-bottom: 25px; }
-        .footer-col h4 { color: var(--brand-green); margin-bottom: 20px; font-size: 0.9rem; letter-spacing: 1px; text-transform: uppercase; }
+        .footer-logo { width: 180px; margin-bottom: 20px; }
+        .footer-col h4 { color: var(--brand-green); margin-bottom: 15px; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; }
         .footer-col ul { list-style: none; padding: 0; margin: 0; }
-        .footer-col ul li { margin-bottom: 12px; }
-        .footer-col a { color: white; text-decoration: none; opacity: 0.8; transition: 0.3s; }
+        .footer-col a { color: white; text-decoration: none; opacity: 0.8; transition: 0.3s; font-size: 0.9rem; }
         .footer-col a:hover { opacity: 1; color: var(--brand-green); }
 
         @media (max-width: 900px) {
             .faq-container { flex-direction: column; }
-            .footer-container { flex-direction: column; text-align: center; }
-            .footer-col { display: flex; flex-direction: column; align-items: center; }
+            .hero-rect-image { height: 250px; }
         }
     </style>
 </head>
@@ -105,7 +113,7 @@
     <header>
         <div class="header-container">
             <a href="index.html">
-                <img src="https://media.discordapp.net/attachments/1416754084576497727/1460039835057131702/Screenshot_2026-01-11_at_5.36.59_PM.png?ex=6965778e&is=6964260e&hm=9c90b295050e057d8f1ee5a3299057bfbe073a398228bbd3ecda265d9cb3f71a&=&format=webp&quality=lossless&width=1930&height=1326" alt="GoCharge Logo" class="nav-logo">
+                <img src="https://media.discordapp.net/attachments/1416754084576497727/1460039835057131702/Screenshot_2026-01-11_at_5.36.59_PM.png" alt="GoCharge Logo" class="nav-logo">
             </a>
             <nav>
                 <ul>
@@ -122,63 +130,37 @@
     <main>
         <section class="hero">
             <div class="hero-content">
-                <h1>RENT. CHARGE.<br>GO.</h1>
-                <p style="font-size: 1.4rem; color: var(--brand-green); margin: 25px 0; font-weight: 700;">Stay Connected, Stay Charged.</p>
-                
-                <p style="max-width: 700px; margin: 0 auto 40px; line-height: 1.6; color: #555;">GoCharge is Toronto's premier power-bank rental service and portable charger seller. We provide instant mobile charging solutions through smart kiosks, ensuring you never run out of battery while on the go.</p>
+                <h1>RENT. CHARGE. GO.</h1>
+                <p style="font-size: 1.2rem; color: var(--brand-green); margin: 15px 0; font-weight: 700;">Stay Connected, Stay Charged.</p>
+                <p style="max-width: 650px; margin: 0 auto 30px; line-height: 1.5; color: #555; font-size: 1rem;">GoCharge is Toronto's premier power-bank rental service. We provide instant mobile charging solutions through smart kiosks.</p>
 
                 <div class="hero-rect-container">
-                    <img src="https://media.discordapp.net/attachments/1416754084576497727/1460038718202318990/Screenshot_2026-01-11_at_5.32.33_PM.png?ex=69657684&is=69642504&hm=ee73c91edfb63e85cec07c8d84df6e2d40a3b70694b264a4d9b08a962a43feb7&=&format=webp&quality=lossless&width=1930&height=1326" alt="GoCharge Station">
+                    <img src="https://media.discordapp.net/attachments/1416754084576497727/1458627394528346225/Screenshot_2026-01-07_at_8.04.25_PM.png?ex=6964f15e&is=69639fde&hm=3aa1ea2e998b2fc260c0b17e9cb0244941c987e9e98040c00c6026ad3dfb696c&=&format=webp&quality=lossless&width=2406&height=1326" alt="GoCharge Station" class="hero-rect-image">
                     <div class="floating-badge">TORONTO'S #1 CHOICE</div>
                 </div>
 
-                <div style="margin-top: 40px;">
-                    <a href="products.html" style="background: var(--brand-green); color: white; padding: 18px 45px; text-decoration: none; border-radius: 4px; font-weight: bold; text-transform: uppercase;">to see a list of products we sell, click here</a>
+                <div style="margin-top: 30px;">
+                    <a href="products.html" style="background: var(--brand-green); color: white; padding: 15px 35px; text-decoration: none; border-radius: 4px; font-weight: bold; text-transform: uppercase; font-size: 0.9rem;">View All Products</a>
                 </div>
             </div>
         </section>
 
         <section class="why-us">
-            <h2 style="font-size: 3rem; text-transform: uppercase; margin-bottom: 10px;">WHY GOCHARGE?</h2>
+            <h2 style="font-size: 2.5rem; text-transform: uppercase; margin-bottom: 10px;">WHY GOCHARGE?</h2>
             <p style="max-width: 800px; margin: 0 auto 50px; color: #666; line-height: 1.6; font-size: 1.1rem;">Portable power for any time in public, with fast and powerful chargers.</p>
             
             <div class="why-us-grid">
                 <div class="why-card">
                     <h3>Fast Charging</h3>
-                    <p>Equipped with 18W rapid-charge technology to get your device to 50% in just the span of 25 minutes.</p>
+                    <p>Equipped with 18W rapid-charge technology to get your device to 50% in just 25 minutes.</p>
                 </div>
                 <div class="why-card">
                     <h3>Convenience</h3>
-                    <p>Our kisoks are placed in high traffic public locations. Including CF Toronto Eaton Centre, and the Scarborough Town Centre. </p>
+                    <p>Our kiosks are placed in high traffic areas like Eaton Centre and Scarborough Town Centre.</p>
                 </div>
                 <div class="why-card">
                     <h3>Affordable</h3>
-                    <p> Our portable chargers are affordable because we care about YOU. $2.35 for 45 minutes of charging, $10 For whole day rental, and $55 to purchase our chargers to keep.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="faq" class="faq-container">
-            <div class="faq-visual">
-                <img src="https://m.media-amazon.com/images/I/71NVBNrF1pL.jpg" class="faq-image-side" alt="Charger">
-            </div>
-            <div class="faq-content">
-                <h2 style="font-size: 3rem; margin-bottom: 40px; text-transform: uppercase;">Frequently Asked<br>Questions</h2>
-                <div class="faq-item">
-                    <h4 style="color: var(--brand-green); font-size: 1.4rem;">How do I rent a charger?</h4>
-                    <p style="color: #666; line-height: 1.6;">Simply visit one of our kiosks, select the charger on the screen, pay through card or coins, and the power bank will release automatically.</p>
-                </div>
-                <div class="faq-item">
-                    <h4 style="color: var(--brand-green); font-size: 1.4rem;">Where can I return the power bank?</h4>
-                    <p style="color: #666; line-height: 1.6;">You can return it to any GoCharge station across the city. Just slide it into an empty slot, and your rental will end.</p>
-                </div>
-                <div class="faq-item">
-                    <h4 style="color: var(--brand-green); font-size: 1.4rem;">Do I need to bring my own cable?</h4>
-                    <p style="color: #666; line-height: 1.6;">No! Every GoCharge power bank comes with built-in cables for iPhone (Lightning), USB-C, Mini-Usb, and Micro-USB.</p>
-                </div>
-                <div class="faq-item">
-                    <h4 style="color: var(--brand-green); font-size: 1.4rem;">What happens to chargers that are never returned?</h4>
-                    <p style="color: #666; line-height: 1.6;"> If you do not return a portable charger, it will stop charging and will be tracked by our staff to be retrieved. Please return your rentals and use responsibly!</p>
+                    <p>Rent for just $2.35 per 45 minutes or buy a charger for $55 to keep forever.</p>
                 </div>
             </div>
         </section>
@@ -187,24 +169,15 @@
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-col" style="flex: 1.5;">
-                <img src="https://media.discordapp.net/attachments/1416754084576497727/1458633338440122419/Screenshot_2026-01-07_at_8.27.39_PM.png?ex=69610267&is=695fb0e7&hm=189f289edd9ad261a3e8dba676fc651162aaf2e75357c860d89c24521f6675ba&=&format=webp&quality=lossless&width=1100&height=312" alt="GoCharge" class="footer-logo">
-                <div style="margin-top: 10px;">
+                <img src="https://media.discordapp.net/attachments/1416754084576497727/1458633338440122419/Screenshot_2026-01-07_at_8.27.39_PM.png" alt="GoCharge" class="footer-logo">
+                <div>
                     <p>Call Us: (416) 555-1020</p>
                     <p>Email Us: info.gocharge@gmail.com</p>
                     <p style="display: flex; align-items: center; gap: 10px; margin-top: 15px;">
                         <svg width="24" height="24" viewBox="0 0 24 24"><path fill="url(#instagram-gradient)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.981 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
                         <span>@go.charge.canada</span>
                     </p>
-                    <p>100 Steelcase Rd E, Markham, ON L3R 1E8</p>
                 </div>
-            </div>
-            <div class="footer-col">
-                <h4>PRODUCTS</h4>
-                <ul><li><a href="products.html">Power Banks</a></li></ul>
-            </div>
-            <div class="footer-col">
-                <h4>ABOUT US</h4>
-                <ul><li><a href="about.html">Our Story</a></li></ul>
             </div>
             <div class="footer-col">
                 <h4>HELP</h4>
@@ -214,8 +187,8 @@
                 </ul>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 50px; opacity: 0.5; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
-            © 2026 GoCharge | Designed by Albert Ma | Last Modified: January 2026
+        <div style="text-align: center; margin-top: 40px; opacity: 0.5; font-size: 0.8rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 20px;">
+            © 2026 GoCharge | Designed by Albert Ma
         </div>
     </footer>
 
